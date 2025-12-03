@@ -1,4 +1,5 @@
 ﻿using OnionVb02.Domain.Entities;
+using OnionVb02.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +9,18 @@ using System.Threading.Tasks;
 
 namespace OnionVb02.Contract.RepositoryInterfaces
 {
-    public interface IRepository<T> where T:BaseEntity
+    public interface IRepository<T> where T:class,IEntity
     {
         //Queries
         Task<List<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
-        List<T> Where(Expression<Func<T, bool>> exp);
+        IQueryable<T> Where(Expression<Func<T, bool>> exp);
 
 
         //Commands
         Task CreateAsync(T entity);
-        Task UpdateAsync(T entity);
+        Task UpdateAsync(T oldEntity,T newEntity);
         Task DeleteAsync(T entity);
+        Task<int> SaveChangesAsync();
     }
 }
