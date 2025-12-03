@@ -10,22 +10,15 @@ namespace OnionVb02.Contract.RepositoryInterfaces
 {
     public interface IRepository<T> where T:BaseEntity
     {
-
-         
-
         //Queries
         Task<List<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
         List<T> Where(Expression<Func<T, bool>> exp);
 
-        //db.Products.Where(x => x.UnitPrice < 20)
-
-        // 1 . Kısım Argüman kısmı x 
-
-        // 2. Kısım
-
-        //Where(new Araba())
 
         //Commands
+        Task CreateAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task DeleteAsync(T entity);
     }
 }
