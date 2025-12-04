@@ -14,6 +14,7 @@ namespace OnionVb02.WebApi.Controllers
     {
         private readonly ICategoryManager _categoryManager;
         private readonly IMapper _mapper;
+        
 
         public CategoryController(ICategoryManager categoryManager,IMapper mapper)
         {
